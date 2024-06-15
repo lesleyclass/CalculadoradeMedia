@@ -32,10 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _nome = '';
   String _email = '';
-  double _nota1 = 0.0;
-  double _nota2 = 0.0;
-  double _nota3 = 0.0;
-  double _media = 0.0;
+  double _nota1 = -1.0;
+  double _nota2 = -1.0;
+  double _nota3 = -1.0;
+  double _media = -1.0;
 
   void _salvarDados(String nome, String email, double nota1, double nota2, double nota3) {
     setState(() {
@@ -58,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
       _nome = '';
       _email = '';
-      _nota1 = 0.0;
-      _nota2 = 0.0;
-      _nota3 = 0.0;
-      _media = 0.0;
+      _nota1 = -1.0;
+      _nota2 = -1.0;
+      _nota3 = -1.0;
+      _media = -1.0;
     });
   }
 
@@ -100,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 20),
               InputDados(
                 salvarDados: _salvarDados, // Pass the callback function
                 nomeController: _nomeController,

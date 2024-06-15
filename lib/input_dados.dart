@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputDados extends StatefulWidget {
   final Function(String nome, String email, double nota1, double nota2, double nota3) salvarDados;
@@ -26,9 +27,9 @@ class _InputDadosState extends State<InputDados> {
   void _salvarDados() {
     final nome = widget.nomeController.text;
     final email = widget.emailController.text;
-    final nota1 = double.tryParse(widget.nota1Controller.text) ?? 0;
-    final nota2 = double.tryParse(widget.nota2Controller.text) ?? 0;
-    final nota3 = double.tryParse(widget.nota3Controller.text) ?? 0;
+    final nota1 = double.tryParse(widget.nota1Controller.text) ?? -1.0;
+    final nota2 = double.tryParse(widget.nota2Controller.text) ?? -1.0;
+    final nota3 = double.tryParse(widget.nota3Controller.text) ?? -1.0;
 
     widget.salvarDados(nome, email, nota1, nota2, nota3);
   }
@@ -39,37 +40,86 @@ class _InputDadosState extends State<InputDados> {
       children: <Widget>[
         TextField(
           controller: widget.nomeController,
-          decoration: InputDecoration(labelText: 'Nome'),
+          decoration: const InputDecoration(
+              labelText: 'Nome',
+              border: OutlineInputBorder(
+                borderSide: BorderSide(width: 2.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blueAccent),
+              ),
+          ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           controller: widget.emailController,
-          decoration: InputDecoration(labelText: 'Email'),
+          decoration: const InputDecoration(
+              labelText: 'Email',
+              border: OutlineInputBorder(
+                borderSide: BorderSide(width: 2.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blueAccent),
+              ),
+          ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           children: <Widget>[
             Expanded(
               child: TextField(
                 controller: widget.nota1Controller,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Nota 1'),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')), // Permite apenas números double com até 2 casas decimais
+                ],
+                decoration: const InputDecoration(
+                    labelText: 'Nota 1',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blueAccent),
+                    ),
+                ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: TextField(
                 controller: widget.nota2Controller,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Nota 2'),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')), // Permite apenas números double com até 2 casas decimais
+                ],
+                decoration: const InputDecoration(
+                    labelText: 'Nota 2',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blueAccent),
+                    ),
+                ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: TextField(
                 controller: widget.nota3Controller,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Nota 3'),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')), // Permite apenas números double com até 2 casas decimais
+                ],
+                decoration: const InputDecoration(
+                    labelText: 'Nota 3',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blueAccent),
+                    ),
+                ),
               ),
             ),
           ],
