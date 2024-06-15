@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InputDados(
-                onSalvar: _salvarDados, // Pass the callback function
+                salvarDados: _salvarDados, // Pass the callback function
                 nomeController: _nomeController,
                 emailController: _emailController,
                 nota1Controller: _nota1Controller,
